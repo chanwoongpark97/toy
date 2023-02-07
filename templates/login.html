@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <title>Title</title>
+    <style>
+        .login_wrapper {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 350px;
+            height: 380px;
+            top: 50%;
+            left: 50%;
+            margin: -175px 0px 0px -190px;
+            background-color: white;
+            border: 1px solid #DBDBDB;
+        }
+
+        .login_logo {
+            margin: 30px 0 30px 0;
+            color: #262626;
+            font-family: 'Lobster', cursive;
+            font-size: 40px;
+            /*font-weight: 100px;*/
+        }
+
+        .login_form {
+            display: flex;
+            flex-direction: column;
+            width: 280px;
+            margin-top: 10px;
+        }
+
+        .login_text {
+            width: 100%;
+            height: 40px;
+            margin: 3px 0 3px 0;
+            padding: 0 10px 0 10px;
+            background-color: #FAFAFA;
+            border: 1px solid #DBDBDB;
+            border-radius: 3px;
+        }
+
+        .login_text:focus {
+            outline: 1px solid #a8a8a8;
+        }
+
+        .login_text::placeholder {
+            color: #8E8E8E;
+        }
+
+        /*.login_text::value {*/
+        /*    color: #262626;*/
+        /*}*/
+
+        .login_btn {
+            width: 100%;
+            height: 33px;
+            margin: 10px 0 5px 0;
+            color: white;
+            background-color: #C0DFFD;
+            border-radius: 5px;
+            border-style: none;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .login_bottom {
+            margin-top: 65px;
+            color: #01376A;
+            font-size: 13px;
+        }
+    </style>
+    <script>
+        function login() {
+            const loginId = 'test'
+            const loginPw = '1233'
+            let userId = $('#LOGIN_ID').val()
+            let userPw = $('#LOGIN_PW').val()
+            if (loginId == userId && userId != '') {
+                console.log('아이디 일치')
+                if (loginPw == userPw && userPw != '') {
+                    console.log('비밀번호 일치')
+                    location.href='check.html'
+                } else {
+                    console.log('비밀번호 불일치')
+                }
+            } else {
+                console.log('아이디 불일치')
+            }
+        }
+
+        function find_pass() {  //비밀번호 찾기로 이동 (로그인 구현완료 후 시작할 것)
+
+        }
+        function move_join() {  //회원가입으로 이동
+            location.href='join'
+        }
+    </script>
+</head>
+<body>
+<div class="login_wrapper">
+    <div class="login_logo">제목</div>
+    <form class="login_form">
+        <input id="LOGIN_ID" class="login_text" type="text" name="id" placeholder="ID를 입력해주세요">
+        <input id="LOGIN_PW" class="login_text" type="password" name="id" placeholder="비밀번호">
+        <button id="LOGIN_BTN" class="login_btn" type="button" onclick="login()">로그인</button>
+    </form>
+    <a class="login_bottom" href="">비밀번호를 잊으셨나요?</a>
+    <button class="login_bottom" type="button" onclick="find_pass()">비밀번호를 잊으셨나요?</button>
+    <button class="btn btn-outline-success" type="submit" onclick="move_join()">회원가입</button>
+</div>
+</body>
+</html>

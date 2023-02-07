@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>회원 가입</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <style>
+        div {
+            padding: 15px;
+        }
+    </style>
+    <script>
+        function createMember() {
+            let userName = $('#userName').val()
+            let userId = $('#userId').val()
+            let userPw =$('#userPw').val()
+            let email = $('#userEmail').val()
+            $.ajax({
+                type: "POST",
+                url: "/join",
+                data: {name_give: userName,
+                userId_give: userId,
+                userPw_give: userPw,
+                userEmail_give: email},
+                success: function (response) {
+                    console.log(response['msg'])
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<div>
+    <label>아이디: <input id="userId" type="text"></label>
+</div>
+<div>
+    <label>비밀번호: <input id="userPw" type="text"></label>
+</div>
+<div>
+    <label>비밀번호 확인: <input id="userPw2" type="text"></label>
+</div>
+<div>
+    <label>이메일: <input id="email" type="email"></label>
+</div>
+<div>
+    <input type="button" value="회원가입" onclick="createMember()">
+</div>
+</body>
+</html>
