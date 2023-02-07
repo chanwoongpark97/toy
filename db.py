@@ -1,38 +1,48 @@
 import requests
 from bs4 import BeautifulSoup
+
 from pymongo import MongoClient
 import certifi
 
 ca = certifi.where()
 
-client = MongoClient('mongodb+srv://test:sparta@cluster0.zhropba.mongodb.net/Cluster0?retryWrites=true&w=majority', tlsCAFile=ca)
+client = MongoClient('mongodb+srv://test:sparta@Cluster0.zhropba.mongodb.net/?retryWrites=true&w=majority', tlsCAFile=ca)
 db = client.dbsparta
 
-
+# URL을 읽어서 HTML를 받아오고,
 headers = {'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
-data = requests.get('http://ticket.interpark.com/contents/Ranking/RankList?pKind=01011&pCate=&pType=W&pDate=20230206',headers=headers)
+data = requests.get('https://movie.daum.net/ranking/boxoffice/weekly',headers=headers)
 
+# HTML을 BeautifulSoup이라는 라이브러리를 활용해 검색하기 용이한 상태로 만듦
+# soup이라는 변수에 "파싱 용이해진 html"이 담긴 상태가 됨
+# 이제 코딩을 통해 필요한 부분을 추출하면 된다.
 soup = BeautifulSoup(data.text, 'html.parser')
 
-# 크롤링 데이터 (인터파크 뮤지컬 정보)
-musicals = soup.select('body > div.rankingDetailBody > div')
-for musical in musicals:
-    title = musical.select_one('td.prds > div.prdInfo > a > b')
-    if title is not None:   #제목에 None값이 있으면 출력이 정상적으로 안됨
-        name = title.text
-        image = musical.select_one('td.prds > a > img')['src']  #이미지가 alt , src가 잡히는데 alt는 NO_image여서 src의 데이터를 가져옴
-        date = musical.select_one('td.prdDuration').text.strip()    #공백제거를 위한 .strip()내장함수 사용
-        # doc = {   #계속 데이터가 삽입되는 것을 방지하고자 주석처리.
-        #     'category': '뮤지컬',
-        #     'image': image,
-        #     'name': name,
-        #     'date': date,
-        # }
-        # db.culture.insert_one(doc)  #데이터 삽입.
+#카피 셀렉터로 영화 제목 구성 조사
+#mainContent > div > div.box_boxoffice > ol > li:nth-child(1) > div > div.thumb_cont > strong > a
+#mainContent > div > div.box_boxoffice > ol > li:nth-child(2) > div > div.thumb_cont > strong > a
+#카피 셀렉터로 개봉 날짜 구성 조사
+#mainContent > div > div.box_boxoffice > ol > li:nth-child(1) > div > div.thumb_cont > span > span:nth-child(1) > span
+#카피 셀렉터로 영화 포스터 이미지 구성 조사
+#mainContent > div > div.box_boxoffice > ol > li:nth-child(1) > div > div.thumb_item > div.poster_movie > img
+#select를 이용해서, tr들을 불러오기
 
-musical_list = list(db.culture.find({},{'_id':False}))
-for musical in musical_list:
-    print(musical)
+movies = soup.select('#mainContent > div > div.box_boxoffice > ol > li')
 
-# db연결 세팅 끝.
-# certifi가 없으면 db에 데이터 저장이 안됨.
+for movie in movies:
+    a = movie.select_one('div > div.thumb_cont > strong > a')
+    b = movie.select_one('div > div.thumb_cont > span > span:nth-child(1) > span')
+    c = movie.select_one('div > div.thumb_item > div.poster_movie > img')
+    if a is not None:
+        category = '영화' # 한 종류의 카테고리를 나타낼때는 변수형으로
+        title = a.text # 텍스트 추출
+        date = b.text # 텍스트 추출
+        image = c.get('src') # 태그의 속성값을 추출할 때에는 get메소드를 이용한다. [element.get('속성값')]
+        print(category, image, title, date)
+        # doc = {
+        #           'category': category,
+        #           'image': image,
+        #           'name': title,
+        #           'date': date
+        #       }
+        # db.culture.insert_one(doc)
