@@ -63,6 +63,23 @@ for genie in genies :
 def home():
     return render_template('index.html')
 
+@app.route('/movie_List')
+def movie_List():
+    return render_template('movie_List.html')
+
+@app.route('/book_List')
+def book_List():
+    return render_template('book_List.html')
+
+@app.route('/music_List')
+def music_List():
+    return render_template('music_List.html')
+
+@app.route('/musical_List')
+def musical_List():
+    return render_template('musical_List.html')
+
+
 @app.route('/login')
 def login():
     return render_template('login.html')

@@ -88,12 +88,12 @@
                 console.log('아이디 일치')
                 if (loginPw == userPw && userPw != '') {
                     console.log('비밀번호 일치')
-                    location.href='check.html'
+                    location.href='/'
                 } else {
-                    console.log('비밀번호 불일치')
+                    alert('비밀번호가 맞지 않습니다')
                 }
             } else {
-                console.log('아이디 불일치')
+                alert('아이디가 맞지 않습니다.')
             }
         }
 
