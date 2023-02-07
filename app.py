@@ -81,7 +81,9 @@ def book_List():
 def music_List():
     return render_template('music_List.html')
 
-
+@app.route('/books')
+def books():
+    return render_template('book_List.html')
 
 @app.route('/musical_List')
 def musical_List():
@@ -106,11 +108,28 @@ def test_get():
     print(title_receive)
     return jsonify({'result': 'success', 'msg': '이 요청은 GET!'})
 
-@app.route('/join', methods=['POST'])
-def test_post():
-    title_receive = request.form['title_give']
-    print(title_receive)
-    return jsonify({'result': 'success', 'msg': '회원 가입 완료.'})
+@app.route("/join", methods=["POST"])
+def join_post():
+    userId_receive = request.form['userId_give']
+    userPw_receive = request.form['userPw_give']
+    userName_receive = request.form['userName_give']
+    userPhone_receive = request.form['userPhone_give']
+    # if userId_receive == '' or userPw_receive == '' or name_receive == '' or phone_receive == '':
+    #     return jsonify({'msg': '정보를 입력해주세요.'})
+    doc = {
+        'userId': userId_receive,
+        'userPw': userPw_receive,
+        'userName': userName_receive,
+        'userPhone': userPhone_receive,
+    }
+    db.member.insert_one(doc)
+
+    return jsonify({'msg':'회원가입 완료'})
+
+@app.route("/book", methods=["GET"])
+def book_get():
+    book_list = list(db.books.find({}, {'_id': False}))
+    return jsonify({'books': book_list})
 
 #board
 @app.route("/board", methods=["POST"])
