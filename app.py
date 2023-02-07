@@ -59,7 +59,7 @@ for genie in genies:
                   'artist': artist,
               }
     # db.music.insert_one(doc)
-@app.route("/music_List", methods=["GET"])
+@app.route("/music", methods=["GET"])
 def music_get():
     music_list = list(db.music.find({}, {'_id': False}))
     return jsonify({'musics':music_list})
