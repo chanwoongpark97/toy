@@ -1,53 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>회원 가입</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-            crossorigin="anonymous"></script>
-    <style>
-        div {
-            padding: 15px;
-        }
-    </style>
-    <script>
-        function createMember() {
-            let userName = $('#userName').val()
-            let userId = $('#userId').val()
-            let userPw =$('#userPw').val()
-            let email = $('#userEmail').val()
-            $.ajax({
-                type: "POST",
-                url: "/join",
-                data: {name_give: userName,
-                userId_give: userId,
-                userPw_give: userPw,
-                userEmail_give: email},
-                success: function (response) {
-                    console.log(response['msg'])
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+crossorigin="anonymous"></script>
+    <title>회원가입</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+<style>
+    * {
+        font-family: 'Jua', sans-serif;
+    }
+    .title {
+        width: 300px;
+        height: 200px;
+        color: white;
+        padding-top: 40px;
+        text-align: center;
+
+        border-radius: 20px;
+    }
+    .bigtitle {
+        border-radius: 20px;
+        width: 300px;
+        margin: auto;
+
+        text-align: center;
+
+        background-image: url(https://img.freepik.com/free-vector/falling-stars-on-a-beautiful-night-background_23-2148273840.jpg);
+        background-position: center;
+        background-size: 300%;
+    }
+    .login-input {
+        color: white;
+        padding-bottom: 70px;
+
+    }
+</style>
+<script>
+    function createMember() {
+        let userId = $('#userId').val()
+        let userPw = $('#userPw').val()
+        let userName = $('#userName').val()
+        let userPhone = $('#userPhone').val()
+
+        $.ajax({
+            type: 'POST',
+            url: '/join',
+            data: {userId_give: userId, userPw_give: userPw, userName_give: userName, userPhone_give: userPhone},
+            success: function (response) {
+                // console.log(id)
+                if (userId == '' | userPw == '' | userName == '' | userPhone == '') {
+                    alert('정보를 입력하세요.')
                 }
-            })
-        }
-    </script>
+                if (userId != '' & userPw != '' & userName != '' & userPhone != ''){
+                    alert(response['msg'])
+                    window.location.href='/login'
+                }
+            }
+        });
+    }
+</script>
 </head>
 <body>
-<div>
-    <label>아이디: <input id="userId" type="text"></label>
-</div>
-<div>
-    <label>비밀번호: <input id="userPw" type="text"></label>
-</div>
-<div>
-    <label>비밀번호 확인: <input id="userPw2" type="text"></label>
-</div>
-<div>
-    <label>이메일: <input id="email" type="email"></label>
-</div>
-<div>
-    <input type="button" value="회원가입" onclick="createMember()">
-</div>
-test 공유멤버 테스트
+    <div class="bigtitle">
+        <div class="title">
+            <h1>회원가입</h1>
+            <h5>정보를 입력해 주세요.</h5>
+        </div>
+        <div class="login-input">
+            <p>ID: <input id="userId" type="text"></p>
+            <p>PW: <input id="userPw" type="text"></p>
+            <p>이름: <input id="userName" type="text"></p>
+            <p>연락처: <input id="userPhone" type="text"></p>
+            <button onclick="createMember()">회원가입</button>
+            <button onclick="window.location.href='/login'">뒤로가기</button>
+        </div>
+    </div>
 </body>
 </html>
