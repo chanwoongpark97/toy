@@ -24,23 +24,6 @@
             })
         }
     </script>
-    <script>    //게시판에서 사용
-        $(document).ready(function () {
-            let today = new Date().toISOString().substring(0,10);
-            console.log(today)
-            let temp_html = `<tr>
-                                <th scope="row">seq_num++</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>${today}</td>
-                            </tr>`
-            $('#notice-list').append(temp_html)
-        });
-        function date() {
-            let now = new Date();
-            alert(now)
-        }
-    </script>
     <script>    //로그인 이동
     function move_login() {
         location.href='login'
@@ -50,7 +33,7 @@
 <body>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">로고?</a>
+        <a class="navbar-brand" href="/">로고?</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -58,16 +41,19 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">영화</a>
+                    <a class="nav-link active" aria-current="page" href="movie_List">영화</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">도서</a>
+                     <a class="nav-link active" aria-current="page" href="book_List">도서</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">음악</a>
+                    <a class="nav-link" href="music_List">음악</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">공연</a>
+                    <a class="nav-link" href="musical_List">공연</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="board">게시판</a>
                 </li>
             </ul>
             <form class="d-flex" role="search">
@@ -78,34 +64,6 @@
         </div>
     </div>
 </nav>
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col">글 번호</th>
-        <th scope="col">작성자</th>
-        <th scope="col">제목</th>
-        <th scope="col">등록일</th>
-    </tr>
-    </thead>
-    <tbody class="table-group-divider" id="notice-list">
-    <tr>
-        <th scope="row">number</th>
-        <td>${name}</td>
-        <td>${title}</td>
-        <td id="date">${today}</td>
-    </tr>
-    <tr>
-        <th scope="row">seq_num++</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-    </tr>
-    <tr>
-        <th scope="row">seq_num++</th>
-        <td colspan="2">title</td>
-        <td>@twitter</td>
-    </tr>
-    </tbody>
-</table>
+
 </body>
 </html>
