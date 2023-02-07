@@ -53,7 +53,7 @@
         }
 
         function show() {
-            $('#board').empty()
+            // $('#board').empty()
             $.ajax({
                 type: "GET",
                 url: "/boards",
@@ -91,7 +91,11 @@
         </tr>
         </thead>
         <tbody class="table-group-divider" id="board">
-
+        <tr>
+            <th scope="row"><input type="text" id="writer"></th>
+            <td colspan="2"><input type="text" id="comment" placeholder="한줄 평 작성.."></td>
+            <td>${date}</td>
+        </tr>
         </tbody>
     </table>
 </div>
