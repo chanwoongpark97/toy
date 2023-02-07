@@ -25,8 +25,8 @@ soup = BeautifulSoup(data.text, 'html.parser')
 #mainContent > div > div.box_boxoffice > ol > li:nth-child(1) > div > div.thumb_cont > span > span:nth-child(1) > span
 #카피 셀렉터로 영화 포스터 이미지 구성 조사
 #mainContent > div > div.box_boxoffice > ol > li:nth-child(1) > div > div.thumb_item > div.poster_movie > img
-#select를 이용해서, tr들을 불러오기
 
+#select를 이용해서, tr들을 불러오기
 movies = soup.select('#mainContent > div > div.box_boxoffice > ol > li')
 
 for movie in movies:
@@ -45,4 +45,4 @@ for movie in movies:
         #           'name': title,
         #           'date': date
         #       }
-        # db.culture.insert_one(doc)
+        # db.movie.insert_one(doc)
