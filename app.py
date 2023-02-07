@@ -44,21 +44,19 @@ soup = BeautifulSoup(data.text, 'html.parser')
 
 genies = soup.select('#body-content > div.newest-list > div > table > tbody > tr')
 for genie in genies :
-    music = genie.select_one('td.number').text[0:2]
+    # music = genie.select_one('td.number').text[0:2]
     image = genie.select_one('td:nth-child(3) > a > img')['src']
     name = genie.select_one('td.info > a.title.ellipsis').text.strip()
-    date = genie.select_one('td.info > a.albumtitle.ellipsis').text
-    # print(music,image, name, date)
+    content = genie.select_one('td.info > a.albumtitle.ellipsis').text
 
 
     # doc = {
-    # 'category':'music',
-    # 'image':'image',
-    # 'name':'name',
-    # 'desc':'desc',
-    # 'date':'date',
-    # }
-    # db.culture.insert_one(doc)
+    #               'category': 'category',
+    #               'image': image,
+    #               'name': name,
+    #               'contet': content
+    #           }
+    # db.music.insert_one(doc)
 
 # 송 수신
 @app.route('/')
