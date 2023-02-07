@@ -72,6 +72,10 @@ def login():
 def join():
     return render_template('join.html')
 
+@app.route('/board')
+def board():
+    return render_template('board.html')
+
 @app.route('/join', methods=['GET'])
 def test_get():
     title_receive = request.args.get('title_give')
