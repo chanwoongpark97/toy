@@ -37,26 +37,32 @@ for musical_cul in musicals:
         # }
         # db.musical.insert_one(doc)  #데이터 삽입.
 
-headers = {'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
-data = requests.get('https://www.genie.co.kr/chart/top200?ditc=M&rtm=N&ymd=20210701',headers=headers)
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
+data = requests.get('https://www.genie.co.kr/chart/top200?ditc=M&rtm=N&ymd=20210701', headers=headers)
 
 soup = BeautifulSoup(data.text, 'html.parser')
 
 genies = soup.select('#body-content > div.newest-list > div > table > tbody > tr')
-for genie in genies :
-    # music = genie.select_one('td.number').text[0:2]
+for genie in genies:
+    music = genie.select_one('td.number').text[0:2]
     image = genie.select_one('td:nth-child(3) > a > img')['src']
     name = genie.select_one('td.info > a.title.ellipsis').text.strip()
+    artist = genie.select_one('td.info > a.artist.ellipsis').text
     content = genie.select_one('td.info > a.albumtitle.ellipsis').text
 
-
-    # doc = {
-    #               'category': 'category',
-    #               'image': image,
-    #               'name': name,
-    #               'contet': content
-    #           }
+    doc = {
+                  'category': 'category',
+                  'image': image,
+                  'name': name,
+                  'content': content,
+                  'artist': artist,
+              }
     # db.music.insert_one(doc)
+@app.route("/music_List", methods=["GET"])
+def movie_get():
+    music_list = list(db.music.find({}, {'_id': False}))
+    return jsonify({'musics':music_list})
 
 # 송 수신
 @app.route('/')
@@ -74,6 +80,8 @@ def book_List():
 @app.route('/music_List')
 def music_List():
     return render_template('music_List.html')
+
+
 
 @app.route('/musical_List')
 def musical_List():
