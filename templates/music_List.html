@@ -71,9 +71,10 @@
         });
 
         function listing() {
+            $('#cards-box').empty()
             $.ajax({
                 type: 'GET',
-                url: '/movie',
+                url: '/music_List',
                 data: {},
                 success: function (response) {
                     let rows= response['musics']
