@@ -22,19 +22,20 @@ soup = BeautifulSoup(data.text, 'html.parser')
 
 # 크롤링 데이터 (인터파크 뮤지컬 정보)
 musicals = soup.select('body > div.rankingDetailBody > div')
-for musical in musicals:
-    title = musical.select_one('td.prds > div.prdInfo > a > b')
+for musical_cul in musicals:
+    title = musical_cul.select_one('td.prds > div.prdInfo > a > b')
     if title is not None:  # 제목에 None값이 있으면 출력이 정상적으로 안됨
         name = title.text
-        image = musical.select_one('td.prds > a > img')['src']  # 이미지가 alt , src가 잡히는데 alt는 NO_image여서 src의 데이터를 가져옴
-        date = musical.select_one('td.prdDuration').text.strip()  # 공백제거를 위한 .strip()내장함수 사용
+        image = musical_cul.select_one('td.prds > a > img')['src']  # 이미지가 alt , src가 잡히는데 alt는 NO_image여서 src의 데이터를 가져옴
+        content = musical_cul.select_one('td.prdDuration').text.strip()  # 공백제거를 위한 .strip()내장함수 사용
+        # print(name, image, content)
         # doc = {   #계속 데이터가 삽입되는 것을 방지하고자 주석처리.
         #     'category': '뮤지컬',
         #     'image': image,
         #     'name': name,
-        #     'date': date,
+        #     'content': content,
         # }
-        # db.culture.insert_one(doc)  #데이터 삽입.
+        # db.musical.insert_one(doc)  #데이터 삽입.
 
 headers = {'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
 data = requests.get('https://www.genie.co.kr/chart/top200?ditc=M&rtm=N&ymd=20210701',headers=headers)
@@ -47,17 +48,17 @@ for genie in genies :
     image = genie.select_one('td:nth-child(3) > a > img')['src']
     name = genie.select_one('td.info > a.title.ellipsis').text.strip()
     date = genie.select_one('td.info > a.albumtitle.ellipsis').text
-    print(music,image, name, date)
+    # print(music,image, name, date)
 
 
-    doc = {
-    'category':'music',
-    'image':'image',
-    'name':'name',
-    'desc':'desc',
-    'date':'date',
-    }
-    db.culture.insert_one(doc)
+    # doc = {
+    # 'category':'music',
+    # 'image':'image',
+    # 'name':'name',
+    # 'desc':'desc',
+    # 'date':'date',
+    # }
+    # db.culture.insert_one(doc)
 
 # 송 수신
 @app.route('/')
