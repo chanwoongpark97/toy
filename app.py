@@ -98,13 +98,32 @@ def test_get():
     print(title_receive)
     return jsonify({'result': 'success', 'msg': '이 요청은 GET!'})
 
-
 @app.route('/join', methods=['POST'])
 def test_post():
     title_receive = request.form['title_give']
     print(title_receive)
     return jsonify({'result': 'success', 'msg': '회원 가입 완료.'})
 
+#board
+@app.route("/board", methods=["POST"])
+def board_post():
+    writer_receive = request.form["writer_give"]
+    comment_receive = request.form["comment_give"]
+    date_receive = request.form["date_give"]
+
+    doc = {
+        'writer': writer_receive,
+        'comment': comment_receive,
+        'date': date_receive
+    }
+
+    db.board.insert_one(doc)
+    return jsonify({'msg':'한줄평 작성 완료!'})
+
+@app.route("/boards", methods=["GET"])
+def board_get():
+    board_list = list(db.board.find({},{'_id':False}))
+    return jsonify({'board_list':board_list})
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)

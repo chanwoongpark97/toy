@@ -10,54 +10,93 @@
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
     <title>게시판</title>
-    <script>    //게시판에서 사용
-    $(document).ready(function () {
-        let today = new Date().toISOString().substring(0, 10);
-        console.log(today)
-        let temp_html = `<tr>
-                                <th scope="row">seq_num++</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>${today}</td>
-                            </tr>`
-        $('#notice-list').append(temp_html)
-    });
+    <style>
+        .table {
+            margin-left: 100px;
+            width: 70%;
+            text-align: center;
+        }
 
-    function date() {
-        let now = new Date();
-        alert(now)
-    }
+        #btn {
+            text-align: center;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            // set_temp()
+            show()
+        });
+        // function set_temp(){
+        //     $.ajax({
+        //         type: "GET",
+        //         url: "http://spartacodingclub.shop/sparta_api/weather/seoul",
+        //         data: {},
+        //         success: function (response) {
+        //             $('#temp').text(response['temp'])
+        //         }
+        //     })
+        // }
+        function save() {
+            let writer = $('#writer').val()
+            let comment = $('#comment').val()
+            let today = new Date().toISOString().substring(0, 10)
+
+            $.ajax({
+                type: "POST",
+                url: "/board",
+                data: {'writer_give': writer, 'comment_give': comment, 'date_give': today},
+                success: function (response) {
+                    alert(response["msg"])
+                    window.location.reload()
+                }
+            });
+        }
+
+        function show() {
+            $('#board').empty()
+            $.ajax({
+                type: "GET",
+                url: "/boards",
+                data: {},
+                success: function (response) {
+                    let rows = response['board_list']
+                    console.log(rows)
+                    for (let i = 0; i < rows.length; i++) {
+                        let writer = rows[i]['writer']
+                        let comment = rows[i]['comment']
+                        let date = rows[i]['date']
+                        console.log(writer, comment, date)
+
+                        let temp_html = `<tr>
+                                        <th scope="row">${writer}</th>
+                                        <td colspan="2">${comment}</td>
+                                        <td>${date}</td>
+                                        </tr>`
+                        $('#board').append(temp_html)
+                    }
+                }
+            });
+        }
     </script>
 </head>
 <body>
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col">글 번호</th>
-        <th scope="col">작성자</th>
-        <th scope="col">제목</th>
-        <th scope="col">등록일</th>
-    </tr>
-    </thead>
-    <tbody class="table-group-divider" id="notice-list">
-    <tr>
-        <th scope="row">number</th>
-        <td>${name}</td>
-        <td>${title}</td>
-        <td id="date">${today}</td>
-    </tr>
-    <tr>
-        <th scope="row">seq_num++</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-    </tr>
-    <tr>
-        <th scope="row">seq_num++</th>
-        <td colspan="2">title</td>
-        <td>@twitter</td>
-    </tr>
-    </tbody>
-</table>
+<h1>자유 게시판</h1>
+<div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">작성자</th>
+            <th scope="col" colspan="2">내용</th>
+            <th scope="col">등록일</th>
+        </tr>
+        </thead>
+        <tbody class="table-group-divider" id="board">
+
+        </tbody>
+    </table>
+</div>
+<div>
+    <button onclick="save()" type="button" class="btn btn-dark">한줄평 남기기</button>
+</div>
 </body>
 </html>
