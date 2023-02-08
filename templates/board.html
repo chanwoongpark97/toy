@@ -75,11 +75,11 @@
             let writer = $('#writer').val()
             let comment = $('#comment').val()
             let today = new Date().toISOString().substring(0, 10)
-
+            let writerId = localStorage.getItem('account');
             $.ajax({
                 type: "POST",
                 url: "/board",
-                data: {'writer_give': writer, 'comment_give': comment, 'date_give': today},
+                data: {'writer_give': writerId, 'comment_give': comment, 'date_give': today},
                 success: function (response) {
                     alert(response["msg"])
                     window.location.reload()

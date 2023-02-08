@@ -94,6 +94,7 @@
                 data: {},
                 success: function (response) {
                     let rows = response['user_list']
+                    // localStorage.setItem('account', userId); 로컬스토리지에 데이터 저장
                     let id = $('#LOGIN_ID').val()
                     let pw = $('#LOGIN_PW').val()
                     for (let i = 0; i < rows.length; i++) {
