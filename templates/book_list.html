@@ -80,24 +80,38 @@ crossorigin="anonymous"></script>
             /* 생략 */
 
         }
-         a:link { color: red; text-decoration: none;
-         }
+    a:link { color: red; text-decoration: none;
+     }
 
-        a:visited {
-            color: white;
-            text-decoration: none;
-        }
+    a:visited {
+        color: white;
+        text-decoration: none;
+    }
 
-        a:hover {
-            color: blue;
-            text-decoration: underline;
-        }
-        .searh_input {
-            border-radius: 50px;
-            border: 1px solid white;
-            width: 250px;
-            text-align: center;
-        }
+    a:hover {
+        color: blue;
+        text-decoration: underline;
+    }
+    .searh_input {
+        border-radius: 50px;
+        border: 1px solid white;
+        width: 250px;
+        text-align: center;
+    }
+
+    /*.navbar-nav > a:link {*/
+    /*    color: red; text-decoration: none;*/
+    /* }*/
+
+    /*.navbar-nav > a:visited {*/
+    /*    color: white;*/
+    /*    text-decoration: none;*/
+    /*}*/
+
+    /*.navbar-nav > a:link {*/
+    /*    color: red;*/
+    /*    text-decoration: none;*/
+    /*}*/
 </style>
 <script>
     $(document).ready(function () {
@@ -118,19 +132,19 @@ crossorigin="anonymous"></script>
                     let name = rows[i]['name']
                     let writer = rows[i]['writer']
                     let publisher = rows[i]['publisher']
+                    let url = rows[i]['url']
                     // console.log(image)
                     let temp_html = `<div class="col">
-                                    <div class="card h-100">
-                                        <img src="${image}"
-                                             class="card-img-top">
-                                            <div class="card-body">
-                                                제목: ${name}
-                                                <p class="card-text">저자: ${writer}</p>
-                                                <p>출판사: ${publisher}</p>
-                                            </div>
-
-                                    </div>
-                                </div>`
+                                        <div class="card h-100">
+                                            <img src="${image}"
+                                                 class="card-img-top">
+                                                <div class="card-body">
+                                                    <a href="https://book.interpark.com${url}"><p style="color: blue">제목: ${name}</p></a>
+                                                    <p class="card-text">저자: ${writer}</p>
+                                                    <p>출판사: ${publisher}</p>
+                                                </div>
+                                        </div>
+                                    </div>`
                     $('#cards-box').append(temp_html)
                  }
             }
