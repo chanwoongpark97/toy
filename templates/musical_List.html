@@ -9,9 +9,104 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
     <title>공연 정보</title>
+    <style>
+        * {
+            font-family: 'Gowun Dodum', sans-serif;
+        }
+
+        .mytitle {
+            width: 100%;
+            height: 250px;
+
+            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://movie-phinf.pstatic.net/20210715_95/1626338192428gTnJl_JPEG/movie_image.jpg');
+            background-position: center;
+            background-size: cover;
+
+            color: white;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mytitle > button {
+            width: 200px;
+            height: 50px;
+
+            background-color: transparent;
+            color: white;
+
+            border-radius: 50px;
+            border: 1px solid white;
+
+            margin-top: 10px;
+        }
+
+        .mytitle > button:hover {
+            border: 2px solid white;
+        }
+
+
+        .mycards {
+            margin: 20px auto 0px auto;
+            width: 95%;
+            max-width: 1200px;
+
+
+        }
+
+
+    </style>
+    <script>
+        $(document).ready(function () {
+            musicalInfo();
+
+        });
+        function musicalInfo() {
+            $.ajax({
+                type: 'GET',
+                url: '/musicalInfo',
+                data: {},
+                success: function (response) {
+                    let rows = response['musicalInfo']
+                    console.log(rows)
+                    for (let i = 0; i < 50; i++) {
+                        let image = rows[i]['image']
+                        let name = rows[i]['name']
+                        let content = rows[i]['content']
+
+
+                        let temp_html = `        <div class="col">
+                                                    <div class="card h-100">
+                                                        <img src="${image}"
+                                                             class="card-img-top">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title"> ${name} </h5>
+                                                            <p class="card-text"> album : ${content}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>`
+                        $('#cards-box').append(temp_html)
+
+                    }
+                }
+            })
+        }
+    </script>
 </head>
 <body>
-공연
+<div class="mytitle">
+    <h1>뮤지컬 공연 정보</h1>
+    <button>click</button>
+</div>
+
+<div class="mycards" id="my-box">
+    <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">
+
+    </div>
+</div>
 </body>
 </html>

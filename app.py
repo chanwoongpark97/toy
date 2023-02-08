@@ -46,6 +46,10 @@ def books():
 def musical_List():
     return render_template('musical_List.html')
 
+@app.route("/musicalInfo", methods=["GET"])
+def musical_get():
+    musical_info = list(db.musical.find({}, {'_id': False}))
+    return jsonify({'musicalInfo':musical_info})
 
 @app.route('/login')
 def login():
