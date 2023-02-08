@@ -35,6 +35,21 @@ crossorigin="anonymous"></script>
         align-items: center;
         justify-content: center;
     }
+    .mytitle > button {
+            width: 80px;
+            height: 35px;
+
+            background-color: transparent;
+            color: white;
+
+            border-radius: 50px;
+            border: 1px solid white;
+
+            margin-top: 10px;
+        }
+    .mytitle > button:hover {
+            border: 2px solid white;
+        }
     .card-body > p {
         display: flex;
         flex-direction: row;
@@ -44,6 +59,45 @@ crossorigin="anonymous"></script>
         width: 95%;
         max-width: 1200px;
     }
+    header {
+
+            position: fixed;
+            top: 0;
+            /* width: 100% */
+            left: 0;
+            right: 0;
+            height: 50px;
+            padding: 1rem;
+            color: white;
+            background: black;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-right: 50px;
+            z-index: 1;
+            opacity: 0.8;
+            /* 생략 */
+
+        }
+         a:link { color: red; text-decoration: none;
+         }
+
+        a:visited {
+            color: white;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: blue;
+            text-decoration: underline;
+        }
+        .searh_input {
+            border-radius: 50px;
+            border: 1px solid white;
+            width: 250px;
+            text-align: center;
+        }
 </style>
 <script>
     $(document).ready(function () {
@@ -84,24 +138,51 @@ crossorigin="anonymous"></script>
     }
 </script>
 <body>
-    <div class="mytitle">
-        <h1>도서 목록</h1>
-    </div>
-
-    <div class="mycards">
-        <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">
-            <div class="col">
-                <div class="card h-100">
-                    <img src="${image}"
-                         class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">${title}</h5>
-                        <p class="card-text">${desc}</p>
-                        <p>${star_image}</p>
-                        <p class="mycomment">${comment}</p>
+   <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/main"><h2>🏠</h2></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="movie_List">영화</a>
+                        </li>
+                        <li class="nav-item">
+                             <a class="nav-link active" aria-current="page" href="book_List">도서</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="music_List">음악</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="musical_List">공연</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="board">게시판</a>
+                        </li>
+                    </ul>
+<!--                    <form class="d-flex" role="search">-->
+<!--                        <input class="form-control me-2" type="search" placeholder="검색" aria-label="Search">-->
+<!--                        <button class="btn btn-outline-success" type="submit">Search</button>-->
+<!--                    </form>-->
+                    <div class="login">
+                        <button class="btn btn-outline-success" type="button" onclick = "location.href = '/login'">login</button>
                     </div>
                 </div>
             </div>
+        </nav>
+    </header>
+    <div class="mytitle">
+        <h1>도서 목록</h1>
+        <input class="searh_input" type="text"  placeholder="검색어를 입력하세요.">
+        <button>검색</button>
+    </div>
+    <div class="mycards">
+        <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">
+
         </div>
     </div>
 </body>

@@ -9,8 +9,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
     <title>영화 정보</title>
     <style>
+        * {
+            font-family: 'Gowun Dodum', sans-serif;
+        }
         .mytitle {
             width: 100%;
             height: 250px;
@@ -27,8 +31,8 @@
             justify-content: center;
         }
         .mytitle > button {
-            width: 200px;
-            height: 50px;
+            width: 80px;
+            height: 35px;
 
             background-color: transparent;
             color: white;
@@ -41,6 +45,45 @@
 
         .mytitle > button:hover {
             border: 2px solid white;
+        }
+        header {
+
+            position: fixed;
+            top: 0;
+            /* width: 100% */
+            left: 0;
+            right: 0;
+            height: 50px;
+            padding: 1rem;
+            color: white;
+            background: black;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-right: 50px;
+            z-index: 1;
+            opacity: 0.8;
+            /* 생략 */
+
+        }
+         a:link { color: red; text-decoration: none;
+         }
+
+        a:visited {
+            color: white;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: blue;
+            text-decoration: underline;
+        }
+        .searh_input {
+            border-radius: 50px;
+            border: 1px solid white;
+            width: 250px;
+            text-align: center;
         }
     </style>
     <script>
@@ -80,161 +123,52 @@
 </head>
 <body>
     <div class="mytitle">
-        <h1>영화 순위</h1>
-        <button>뒤로 가기</button>
+        <header>
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/main"><h2>🏠</h2></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="movie_List">영화</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="book_List">도서</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="music_List">음악</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="musical_List">공연</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="board">게시판</a>
+                            </li>
+                        </ul>
+                        <!--                    <form class="d-flex" role="search">-->
+                        <!--                        <input class="form-control me-2" type="search" placeholder="검색" aria-label="Search">-->
+                        <!--                        <button class="btn btn-outline-success" type="submit">Search</button>-->
+                        <!--                    </form>-->
+                        <div class="login">
+                            <button class="btn btn-outline-success" type="button" onclick = "location.href = '/login'">login</button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <h1>영화 목록</h1>
+        <input class="searh_input" type="text"  placeholder="검색어를 입력하세요.">
+        <button>검색</button>
     </div>
     <div class="wrap">
         <div id="cards-box" class="row row-cols-1 row-cols-md-5 g-4">
-            <div class="col">
-                <div class="card">
-                    <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fa0aaca4b87c541b11085139bd941da0996a78ec1"
-                         class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">더 퍼스트 슬램덩크</h5>
-                        <p class="card-text">23.01.04</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2F0cdb0abb3d8da8c6332bf6a945a86f9a32f67abd"
-                         class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">아바타: 물의 길</h5>
-                        <p class="card-text">22.12.14</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fd331d74e425a3c71989ab14d9cbe83241377daa5"
-                         class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">교섭</h5>
-                        <p class="card-text">23.01.18</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2F1cf414e700d9b327eec5cb713c9e62723598e4d6"
-                         class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">바빌론</h5>
-                        <p class="card-text">23.02.01</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2F8cf05875cd680827ffdceca14ef26345a6b4497c"
-                         class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">상견니</h5>
-                        <p class="card-text">23.01.25</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2F762a642d585ecff70e0e5cfc4211d9a0f809bf3b"
-                         class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">영웅</h5>
-                        <p class="card-text">22.12.21</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2F04a53a2b94d62ba8a1fabd956545cda3d4d3a500"
-                         class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">유령</h5>
-                        <p class="card-text">23.01.18</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2F62c5652a3c98ab52e3f3acf6e6b028c89d476f27"
-                         class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">메간</h5>
-                        <p class="card-text">23.01.25</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fd2fef75e56d3ae4e7f360216073cc28373616fb1"
-                         class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">방탄소년단: 옛 투 컴 인 시네마</h5>
-                        <p class="card-text">23.02.01</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2F3cea7130cd9af437f24406c9c67768dcd50cf4d9"
-                         class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">장화신은 고양이: 끝내주는 모험</h5>
-                        <p class="card-text">23.01.18</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2F343661a7c1984ae8d0598a5af0c2998117407f52"
-                         class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">오늘 밤, 세계에서 이 사랑이 사라진다 해도</h5>
-                        <p class="card-text">22.11.30</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2F17894ec7b4e3c52163166d60f7a74ea8d0729900"
-                         class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">몬스터 하우스2: 인비져블 피닉스</h5>
-                        <p class="card-text">23.02.02</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2F2a6754ea5e17f96b5eecf6fe6378c42019c79bc7"
-                         class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">캐리와 슈퍼콜라</h5>
-                        <p class="card-text">23.01.18</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fef71880559cb3f9d87abd0a13284ea91fe97a2b5"
-                         class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">극장판 전생했더니 슬라임이었던 건에 대하여: 홍련의 인연편</h5>
-                        <p class="card-text">23.02.02</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2F267706755c59d8e24c7c01e9a8e5a93a0d92b4d1"
-                         class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">천룡팔부: 교봉전</h5>
-                        <p class="card-text">23.01.25</p>
-                    </div>
-                </div>
-            </div>
+<!--           -->
         </div>
     </div>
 </body>

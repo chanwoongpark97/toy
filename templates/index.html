@@ -29,41 +29,89 @@
         location.href='login'
     }
     </script>
+    <style>
+        header {
+
+            position: fixed;
+            top: 0;
+            /* width: 100% */
+            left: 0;
+            right: 0;
+            height: 75px;
+            padding: 1rem;
+            color: white;
+            background: #C0DFFD;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-right: 50px;
+            /* 생략 */
+
+        }
+         a:link { color: red; text-decoration: none;
+         }
+
+        a:visited {
+            color: black;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: blue;
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/main">로고?</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="movie_List">영화</a>
-                </li>
-                <li class="nav-item">
-                     <a class="nav-link active" aria-current="page" href="book_List">도서</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="music_List">음악</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="musical_List">공연</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="board">게시판</a>
-                </li>
-            </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="검색" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-            <button class="btn btn-outline-success" type="submit" onclick="move_login()">login</button>
-        </div>
-    </div>
-</nav>
-
+<!--    <header>-->
+<!--        <a href="/main"><h1>🏠</h1></a>-->
+<!--        <nav class="nav">-->
+<!--            <div class="link">-->
+<!--                <a href="/login"><span class="login">로그인</span></a>-->
+<!--                <a href="/movie_List">영화</a>-->
+<!--                <a href="/book_List">도서</a>-->
+<!--                <a href="/music_List">음악</a>-->
+<!--                <a href="/musical_List">연극</a>-->
+<!--            </div>-->
+<!--        </nav>-->
+<!--    </header>-->
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/main"><h2>🏠</h2></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="movie_List">영화</a>
+                        </li>
+                        <li class="nav-item">
+                             <a class="nav-link active" aria-current="page" href="book_List">도서</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="music_List">음악</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="musical_List">공연</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="board">게시판</a>
+                        </li>
+                    </ul>
+<!--                    <form class="d-flex" role="search">-->
+<!--                        <input class="form-control me-2" type="search" placeholder="검색" aria-label="Search">-->
+<!--                        <button class="btn btn-outline-success" type="submit">Search</button>-->
+<!--                    </form>-->
+                    <div class="login">
+                        <button class="btn btn-outline-success" type="button" onclick="move_login()">login</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
 </body>
 </html>
