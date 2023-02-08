@@ -82,6 +82,24 @@
         }
     </style>
     <script>
+        $(document).ready(function () {
+            check()
+        });
+        function check() {
+            $.ajax({
+                type: "GET",
+                url: "/loginchk",
+                data: {},
+                success: function (response) {
+                    let rows = response['user_list']
+                    for (let i = 0; i < rows.length; i++) {
+                        let userId = rows[i]['userId']
+                        console.log(userId)
+                    }
+                }
+            });
+        }
+
         function login() {
             const loginId = 'test'
             const loginPw = '1233'

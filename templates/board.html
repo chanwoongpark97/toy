@@ -59,19 +59,8 @@
     </style>
     <script>
         $(document).ready(function () {
-            // set_temp()
             show()
         });
-        // function set_temp(){
-        //     $.ajax({
-        //         type: "GET",
-        //         url: "http://spartacodingclub.shop/sparta_api/weather/seoul",
-        //         data: {},
-        //         success: function (response) {
-        //             $('#temp').text(response['temp'])
-        //         }
-        //     })
-        // }
         function save() {
             let writer = $('#writer').val()
             let comment = $('#comment').val()
@@ -96,12 +85,11 @@
                 data: {},
                 success: function (response) {
                     let rows = response['board_list']
-                    console.log(rows)
                     for (let i = 0; i < rows.length; i++) {
                         let writer = rows[i]['writer']
                         let comment = rows[i]['comment']
                         let date = rows[i]['date']
-                        console.log(writer, comment, date)
+                        // console.log(writer, comment, date)
 
                         let temp_html = `<tr>
                                         <th scope="row">${writer}</th>
