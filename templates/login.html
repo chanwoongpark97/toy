@@ -77,6 +77,7 @@
             color: #01376A;
             font-size: 13px;
         }
+
         .board {
             margin-top: 50px;
         }
@@ -85,6 +86,7 @@
         $(document).ready(function () {
             check()
         });
+
         function check() {
             $.ajax({
                 type: "GET",
@@ -92,37 +94,53 @@
                 data: {},
                 success: function (response) {
                     let rows = response['user_list']
+                    let id = $('#LOGIN_ID').val()
+                    let pw = $('#LOGIN_PW').val()
                     for (let i = 0; i < rows.length; i++) {
                         let userId = rows[i]['userId']
-                        console.log(userId)
+                        let userPw = rows[i]['userPw']
+                        // console.log(userId,userPw)
+                        if (userId == id && id != '') {
+                            alert('로그인!')
+                            location.href = '/'
+                            break
+                        } else {
+                            if (id == '') {
+                                break
+                            } else {
+                                alert('아이디와 비밀번호가 일치하지 않습니다!')
+                                break
+                            }
+                        }
                     }
                 }
             });
         }
 
-        function login() {
-            const loginId = 'test'
-            const loginPw = '1233'
-            let userId = $('#LOGIN_ID').val()
-            let userPw = $('#LOGIN_PW').val()
-            if (loginId == userId && userId != '') {
-                console.log('아이디 일치')
-                if (loginPw == userPw && userPw != '') {
-                    console.log('비밀번호 일치')
-                    location.href='/'
-                } else {
-                    alert('비밀번호가 맞지 않습니다')
-                }
-            } else {
-                alert('아이디가 맞지 않습니다.')
-            }
-        }
+        // function login() {
+        //     const loginId = 'test'
+        //     const loginPw = '1233'
+        //     let userId = $('#LOGIN_ID').val()
+        //     let userPw = $('#LOGIN_PW').val()
+        //     if (loginId == userId && userId != '') {
+        //         console.log('아이디 일치')
+        //         if (loginPw == userPw && userPw != '') {
+        //             console.log('비밀번호 일치')
+        //             location.href='/'
+        //         } else {
+        //             alert('비밀번호가 맞지 않습니다')
+        //         }
+        //     } else {
+        //         alert('아이디가 맞지 않습니다.')
+        //     }
+        // }
 
         function find_pass() {  //비밀번호 찾기로 이동 (로그인 구현완료 후 시작할 것)
 
         }
+
         function move_join() {  //회원가입으로 이동
-            location.href='join'
+            location.href = 'join'
         }
     </script>
 </head>
@@ -132,7 +150,7 @@
     <form class="login_form">
         <input id="LOGIN_ID" class="login_text" type="text" name="id" placeholder="ID를 입력해주세요">
         <input id="LOGIN_PW" class="login_text" type="password" name="id" placeholder="비밀번호">
-        <button id="LOGIN_BTN" class="login_btn" type="button" onclick="login()">로그인</button>
+        <button id="LOGIN_BTN" class="login_btn" type="button" onclick="check()">로그인</button>
     </form>
     <a class="login_bottom" href="">비밀번호를 잊으셨나요?</a>
     <button class="login_bottom" type="button" onclick="find_pass()">비밀번호를 잊으셨나요?</button>
