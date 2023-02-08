@@ -29,6 +29,10 @@ def music_get():
 def home():
     return render_template('index.html')
 
+@app.route('/main')
+def main():
+    return render_template('main.html')
+
 @app.route('/movie_List')
 def movie_List():
     return render_template('movie_List.html')
