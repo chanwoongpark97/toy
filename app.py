@@ -14,7 +14,10 @@ client = MongoClient('mongodb+srv://test:sparta@cluster0.zhropba.mongodb.net/Clu
 db = client.dbsparta
 
 
-
+@app.route("/movie", methods=["GET"])
+def movie_get():
+    movie_list = list(db.movie.find({}, {'_id': False}))
+    return jsonify({'movies':movie_list})
 
 @app.route("/music", methods=["GET"])
 def music_get():
