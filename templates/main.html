@@ -56,8 +56,46 @@
             float: right;
             max-height: 200px;
         }
+
+        header {
+
+            position: fixed;
+            top: 0;
+            /* width: 100% */
+            left: 0;
+            right: 0;
+            height: 50px;
+            padding: 1rem;
+            color: white;
+            background: black;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-right: 50px;
+            z-index: 1;
+            opacity: 0.8;
+            /* 생략 */
+
+        }
+         a:link { color: red; text-decoration: none;
+         }
+
+        a:visited {
+            color: white;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: blue;
+            text-decoration: underline;
+        }
+        .board {
+            margin-top: 50px;
+        }
         .badair {
             color: red;
+>>>>>>> a341b54f0190e9b8e0029778e679dc6b36b3dfe2
         }
     </style>
     <script>
@@ -109,78 +147,130 @@
     </script>
 </head>
 <body>
-<div id="1">
-슬라이드 , 날씨, 미세먼지 다 감싸는 div
-    <div id="carouselExampleCaptions" class="carousel slide">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
-  </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-        <a href="/movie_List">
-            <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fa0aaca4b87c541b11085139bd941da0996a78ec1" class="d-block w-100" alt="라이언"></a>
-      <div class="carousel-caption d-none d-md-block">
-        <h5>영화 정보가 올 자리</h5>
-        <p>Some representative placeholder content for the first slide.</p>
-      </div>
+    <div id="1">
+        <header>
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/main"><h2>🏠</h2></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="movie_List">영화</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="book_List">도서</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="music_List">음악</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="musical_List">공연</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="board">게시판</a>
+                            </li>
+                        </ul>
+                        <!--                    <form class="d-flex" role="search">-->
+                        <!--                        <input class="form-control me-2" type="search" placeholder="검색" aria-label="Search">-->
+                        <!--                        <button class="btn btn-outline-success" type="submit">Search</button>-->
+                        <!--                    </form>-->
+                        <div class="login">
+                            <button class="btn btn-outline-success" type="button" onclick="location.href = '/login'">
+                                login
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div class="board">
+            슬라이드 , 날씨, 미세먼지 다 감싸는 div
+            <div id="carouselExampleCaptions" class="carousel slide">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                            aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"
+                            aria-label="Slide 4"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <a href="/movie_List">
+                            <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fa0aaca4b87c541b11085139bd941da0996a78ec1"
+                                 class="d-block w-100" alt="라이언"></a>
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>영화 정보가 올 자리</h5>
+                            <p>Some representative placeholder content for the first slide.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="/book_List">
+                            <img src="https://bimage.interpark.com/partner/goods_image/2/5/3/1/356522531s.jpg"
+                                 class="d-block w-100" alt="라이언"></a>
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>도서 정보가 올 자리</h5>
+                            <p>Some representative placeholder content for the second slide.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="/music_List">
+                            <img src="http://ticketimage.interpark.com/Play/image/large/22/22017511_p.gif"
+                                 class="d-block w-100" alt="라이언"></a>
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>음악 정보가 올 자리</h5>
+                            <p>Some representative placeholder content for the third slide.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="/musical_List">
+                            <img src="http://ticketimage.interpark.com/Play/image/large/23/23000632_p.gif"
+                                 class="d-block w-100" alt="라이언"></a>
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>공연 정보가 올 자리</h5>
+                            <p>Some representative placeholder content for the second slide.</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            <div id="3">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-img-top">😀</div>
+                    <div class="card-body">
+                        <p>현재기온: <span class="card-text">36</span>도</p>
+                    </div>
+                </div>
+            </div>
+            <div id="4">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">서울시</th>
+                        <th scope="col">미세먼지 현황</th>
+                    </tr>
+                    </thead>
+                    <tbody id="dust">
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-    <div class="carousel-item">
-        <a href="/book_List">
-            <img src="https://bimage.interpark.com/partner/goods_image/2/5/3/1/356522531s.jpg" class="d-block w-100" alt="라이언"></a>
-      <div class="carousel-caption d-none d-md-block">
-        <h5>도서 정보가 올 자리</h5>
-        <p>Some representative placeholder content for the second slide.</p>
-      </div>
-    </div>
-    <div class="carousel-item">
-        <a href="/music_List">
-            <img src="http://ticketimage.interpark.com/Play/image/large/22/22017511_p.gif" class="d-block w-100" alt="라이언"></a>
-      <div class="carousel-caption d-none d-md-block">
-        <h5>음악 정보가 올 자리</h5>
-        <p>Some representative placeholder content for the third slide.</p>
-      </div>
-    </div>
-      <div class="carousel-item">
-          <a href="/musical_List">
-              <img src="http://ticketimage.interpark.com/Play/image/large/23/23000632_p.gif" class="d-block w-100" alt="라이언"></a>
-      <div class="carousel-caption d-none d-md-block">
-        <h5>공연 정보가 올 자리</h5>
-        <p>Some representative placeholder content for the second slide.</p>
-      </div>
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-    <div id="3">
-        <div class="card" style="width: 18rem;">
-            <div class="card-img-top" >😀</div>
-  <div class="card-body">
-    <p>현재기온: <span class="card-text"></span>도</p>
-  </div>
-</div>
-    </div>
-    <div id="4">
-        <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">서울시</th>
-      <th scope="col">미세먼지 현황</th>
-    </tr>
-  </thead>
-  <tbody id="dust">
-  </tbody>
-</table>
-    </div>
-</div>
 </body>
 </html>

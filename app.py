@@ -27,7 +27,7 @@ def music_get():
 # 송 수신
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('main.html')
 
 @app.route('/main')
 def main():
