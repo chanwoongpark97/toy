@@ -56,6 +56,16 @@
         .board {
             margin-top: 50px;
         }
+        footer {
+            width: 100%;
+            height: 110px; /* 내용물에 따라 알맞는 값 설정 */
+            bottom: 0px;
+            position: absolute;
+            background: black;
+            color: white;
+            opacity: 0.8;
+            position: fixed;
+        }
     </style>
     <script>
         $(document).ready(function () {
@@ -167,5 +177,18 @@
             <button onclick="save()" type="button" class="btn btn-dark">한줄평 남기기</button>
         </div>
     </div>
+    <footer>
+        <div class="footer_div">
+            <nav>
+                <a href='https://rhdqors.tistory.com/' target='_blank'>Blog</a> |
+                <a href='https://github.com/rhdqors' target='_blank'>Github</a>
+            </nav>
+            <p>
+                <span>항해 13기 16조</span><br/>
+                <span>정대철, 박찬웅, 장혁진, 홍다정</span>
+                <!--                <span>Copyright 2020. cocoder. All Rights Reserved.</span>-->
+            </p>
+        </div>
+    </footer>
 </body>
 </html>
