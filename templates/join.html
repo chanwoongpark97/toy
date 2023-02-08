@@ -56,12 +56,9 @@ crossorigin="anonymous"></script>
             data: {userId_give: userId, userPw_give: userPw, userName_give: userName, userPhone_give: userPhone},
             success: function (response) {
                 // console.log(id)
-                if (userId == '' | userPw == '' | userName == '' | userPhone == '') {
-                    alert('정보를 입력하세요.')
-                }
-                if (userId != '' & userPw != '' & userName != '' & userPhone != ''){
-                    alert(response['msg'])
-                    window.location.href='/login'
+                alert(response['msg'])
+                if (response['msg'] == '회원가입 완료.') {
+                    window.location.href = '/login'
                 }
             }
         });

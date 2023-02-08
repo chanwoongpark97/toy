@@ -78,17 +78,25 @@ def join_post():
     userPw_receive = request.form['userPw_give']
     userName_receive = request.form['userName_give']
     userPhone_receive = request.form['userPhone_give']
-    # if userId_receive == '' or userPw_receive == '' or name_receive == '' or phone_receive == '':
-    #     return jsonify({'msg': '정보를 입력해주세요.'})
-    doc = {
-        'userId': userId_receive,
-        'userPw': userPw_receive,
-        'userName': userName_receive,
-        'userPhone': userPhone_receive,
-    }
-    db.member.insert_one(doc)
 
-    return jsonify({'msg':'회원가입 완료'})
+    userId_list = list(db.member.find({}, {'_id': False}))
+
+    if userId_receive == '' or userPw_receive == '' or userName_receive == '' or userPhone_receive == '':
+        return jsonify({'msg': '정보를 입력하세요.'})
+    elif userId_receive != '' and userPw_receive != '' and userName_receive != '' and userPhone_receive != '':
+        doc = {
+            'userId': userId_receive,
+            'userPw': userPw_receive,
+            'userName': userName_receive,
+            'userPhone': userPhone_receive,
+        }
+        db.member.insert_one(doc)
+
+        userId_str = str(userId_receive)
+        for i in userId_list:
+            if i['userId'] == userId_str:
+                return jsonify({'msg': '중복된 id 입니다.'})
+        return jsonify({'msg': '회원가입 완료.'})
 
 @app.route("/book", methods=["GET"])
 def book_get():
