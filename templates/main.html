@@ -56,6 +56,9 @@
             float: right;
             max-height: 200px;
         }
+        .badair {
+            color: red;
+        }
     </style>
     <script>
         $(document).ready(function () {
@@ -84,10 +87,19 @@
                     for (let i = 0; i < 10; i++) {  //i < rows.length 로 바꾸면 전체조회(너무 길어져서 줄여놓음)
                         let city = rows[i]['MSRSTE_NM']
                         let air = rows[i]['IDEX_MVL']
-                        let temp_html = `<tr>
+
+                        let temp_html = ``
+                        if (air > 35) {
+                            temp_html = `<tr class="badair">
                                             <th>${city}</th>
                                             <td>${air}</td>
                                         </tr>`
+                        } else {
+                            temp_html = `<tr>
+                                            <th>${city}</th>
+                                            <td>${air}</td>
+                                        </tr>`
+                        }
                         $('#dust').append(temp_html);
                     }
 
@@ -153,7 +165,7 @@
         <div class="card" style="width: 18rem;">
             <div class="card-img-top" >😀</div>
   <div class="card-body">
-    <p>현재기온: <span class="card-text">36</span>도</p>
+    <p>현재기온: <span class="card-text"></span>도</p>
   </div>
 </div>
     </div>

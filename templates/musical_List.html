@@ -64,6 +64,9 @@
         $(document).ready(function () {
             musicalInfo();
         });
+        function go_reserve() {
+            window.location.href ='http://ticket.interpark.com/contents/Ranking/RankList?pKind=01011&pCate=&pType=W&pDate=20230206'
+        }
 
         function musicalInfo() {
             $.ajax({
@@ -99,7 +102,7 @@
 <body>
 <div class="mytitle">
     <h1>뮤지컬 공연 정보</h1>
-    <button>click</button>
+    <button onclick="go_reserve()">이동하기</button>
 </div>
 
 <div class="mycards" id="my-box">
