@@ -134,5 +134,6 @@ def board_get():
     board_list = list(db.board.find({},{'_id':False}))
     return jsonify({'board_list':board_list})
 
+
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
