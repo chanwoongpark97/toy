@@ -169,9 +169,11 @@ crossorigin="anonymous"></script>
                     let publisher = rows[i]['publisher']
                     let url = rows[i]['url']
 
-                    //       띄어쓰기 전후로 단어 검색
+                    console.log(name.includes(search))
+
+                    //       한 글자 마다 검색 가능
                     name_word = name.split(' ')
-                    if (search == name_word) {
+                    if (name.includes(search)) {
                             let temp_html = `<div class="col">
                                             <div class="card h-100">
                                                  <a href="https://book.interpark.com${url}"><img src="${image}"
@@ -184,43 +186,43 @@ crossorigin="anonymous"></script>
                                             </div>
                                         </div>`
                             $('#cards-box').append(temp_html)
-                            break
+                            // break
                         }
-                    for (let j=0; j<name.length; j++) {
-                            //      차례대로 앞글자부터 하나씩 검색
-                        name_str = name.slice(0, j)
-                        if (search == name_str) {
-                            let temp_html = `<div class="col">
-                                            <div class="card h-100">
-                                                 <a href="https://book.interpark.com${url}"><img src="${image}"
-                                                     class="card-img-top"></a>
-                                                    <div class="card-body">
-                                                        <a href="https://book.interpark.com${url}"><p style="color: blue">제목: ${name}</p></a>
-                                                        <p class="card-text">저자: ${writer}</p>
-                                                        <p>출판사: ${publisher}</p>
-                                                    </div>
-                                            </div>
-                                        </div>`
-                            $('#cards-box').append(temp_html)
-                            break
-                        }
-                    //            이름 전체 검색
-                    if (search == name) {
-                        let temp_html = `<div class="col">
-                                        <div class="card h-100">
-                                             <a href="https://book.interpark.com${url}"><img src="${image}"
-                                                 class="card-img-top"></a>
-                                                <div class="card-body">
-                                                    <a href="https://book.interpark.com${url}"><p style="color: blue">제목: ${name}</p></a>
-                                                    <p class="card-text">저자: ${writer}</p>
-                                                    <p>출판사: ${publisher}</p>
-                                                </div>
-                                        </div>
-                                    </div>`
-                        $('#cards-box').append(temp_html)
-                        break
-                    }
-                    }
+                    // for (let j=0; j<name.length; j++) {
+                    //         //      차례대로 앞글자부터 하나씩 검색
+                    //     name_str = name.slice(0, j)
+                    //     if (search == name_str) {
+                    //         let temp_html = `<div class="col">
+                    //                         <div class="card h-100">
+                    //                              <a href="https://book.interpark.com${url}"><img src="${image}"
+                    //                                  class="card-img-top"></a>
+                    //                                 <div class="card-body">
+                    //                                     <a href="https://book.interpark.com${url}"><p style="color: blue">제목: ${name}</p></a>
+                    //                                     <p class="card-text">저자: ${writer}</p>
+                    //                                     <p>출판사: ${publisher}</p>
+                    //                                 </div>
+                    //                         </div>
+                    //                     </div>`
+                    //         $('#cards-box').append(temp_html)
+                    //         break
+                    //     }
+                    // //            이름 전체 검색
+                    // if (search == name) {
+                    //     let temp_html = `<div class="col">
+                    //                     <div class="card h-100">
+                    //                          <a href="https://book.interpark.com${url}"><img src="${image}"
+                    //                              class="card-img-top"></a>
+                    //                             <div class="card-body">
+                    //                                 <a href="https://book.interpark.com${url}"><p style="color: blue">제목: ${name}</p></a>
+                    //                                 <p class="card-text">저자: ${writer}</p>
+                    //                                 <p>출판사: ${publisher}</p>
+                    //                             </div>
+                    //                     </div>
+                    //                 </div>`
+                    //     $('#cards-box').append(temp_html)
+                    //     break
+                    // }
+                    // }
                 }
                 if (search == '') {
                     alert('검색어를 입력하세요')
