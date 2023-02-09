@@ -136,8 +136,8 @@ crossorigin="anonymous"></script>
                     // console.log(image)
                     let temp_html = `<div class="col">
                                         <div class="card h-100">
-                                            <img src="${image}"
-                                                 class="card-img-top">
+                                            <a href="https://book.interpark.com${url}"><img src="${image}"
+                                                 class="card-img-top"></a>
                                                 <div class="card-body">
                                                     <a href="https://book.interpark.com${url}"><p style="color: blue">제목: ${name}</p></a>
                                                     <p class="card-text">저자: ${writer}</p>
@@ -147,6 +147,84 @@ crossorigin="anonymous"></script>
                                     </div>`
                     $('#cards-box').append(temp_html)
                  }
+            }
+        })
+    }
+
+    function search() {
+        $('#cards-box').empty()
+        let search = $('#search_name').val()
+
+        $.ajax({
+            type: 'GET',
+            url: '/search_list',
+            data: {},
+            success: function (response) {
+                let rows = response['books']
+
+                for (let i=0; i < rows.length; i++) {
+                    let image = rows[i]['image']
+                    let name = rows[i]['name'].toLowerCase()
+                    let writer = rows[i]['writer']
+                    let publisher = rows[i]['publisher']
+                    let url = rows[i]['url']
+
+                    //       띄어쓰기 전후로 단어 검색
+                    name_word = name.split(' ')
+                    if (search == name_word) {
+                            let temp_html = `<div class="col">
+                                            <div class="card h-100">
+                                                 <a href="https://book.interpark.com${url}"><img src="${image}"
+                                                     class="card-img-top"></a>
+                                                    <div class="card-body">
+                                                        <a href="https://book.interpark.com${url}"><p style="color: blue">제목: ${name}</p></a>
+                                                        <p class="card-text">저자: ${writer}</p>
+                                                        <p>출판사: ${publisher}</p>
+                                                    </div>
+                                            </div>
+                                        </div>`
+                            $('#cards-box').append(temp_html)
+                            break
+                        }
+                    for (let j=0; j<name.length; j++) {
+                            //      차례대로 앞글자부터 하나씩 검색
+                        name_str = name.slice(0, j)
+                        if (search == name_str) {
+                            let temp_html = `<div class="col">
+                                            <div class="card h-100">
+                                                 <a href="https://book.interpark.com${url}"><img src="${image}"
+                                                     class="card-img-top"></a>
+                                                    <div class="card-body">
+                                                        <a href="https://book.interpark.com${url}"><p style="color: blue">제목: ${name}</p></a>
+                                                        <p class="card-text">저자: ${writer}</p>
+                                                        <p>출판사: ${publisher}</p>
+                                                    </div>
+                                            </div>
+                                        </div>`
+                            $('#cards-box').append(temp_html)
+                            break
+                        }
+                    //            이름 전체 검색
+                    if (search == name) {
+                        let temp_html = `<div class="col">
+                                        <div class="card h-100">
+                                             <a href="https://book.interpark.com${url}"><img src="${image}"
+                                                 class="card-img-top"></a>
+                                                <div class="card-body">
+                                                    <a href="https://book.interpark.com${url}"><p style="color: blue">제목: ${name}</p></a>
+                                                    <p class="card-text">저자: ${writer}</p>
+                                                    <p>출판사: ${publisher}</p>
+                                                </div>
+                                        </div>
+                                    </div>`
+                        $('#cards-box').append(temp_html)
+                        break
+                    }
+                    }
+                }
+                if (search == '') {
+                    alert('검색어를 입력하세요')
+                }
             }
         })
     }
@@ -191,8 +269,11 @@ crossorigin="anonymous"></script>
     </header>
     <div class="mytitle">
         <h1>도서 목록</h1>
-        <input class="searh_input" type="text"  placeholder="검색어를 입력하세요.">
-        <button>검색</button>
+        <input id="search_name" class="searh_input" type="text" placeholder="책 제목을 입력하세요.">
+        <button onclick="search()">검색</button>
+
+<!--        <input class="searh_input" type="text"  placeholder="검색어를 입력하세요.">-->
+<!--        <button>검색</button>-->
     </div>
     <div class="mycards">
         <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">
