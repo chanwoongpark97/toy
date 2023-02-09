@@ -103,13 +103,14 @@
                         let image = rows[i]['image']
                         let name = rows[i]['name']
                         let date = rows[i]['date']
+                        let url = rows[i]['url']
 
                         let temp_html = `<div class="col">
                                             <div class="card">
                                                 <img src="${image}"
                                                      class="card-img-top" alt="...">
                                                 <div class="card-body">
-                                                    <h5 class="card-title">${name}</h5>
+                                                    <a href="https://movie.daum.net${url}"><p style="color: blue">${name}</p></a>
                                                     <p class="card-text">개봉날짜 : ${date}</p>
                                                 </div>
                                             </div>
