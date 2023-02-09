@@ -101,20 +101,25 @@
                         let userId = rows[i]['userId']
                         let userPw = rows[i]['userPw']
                         // console.log(userId,userPw)
-                        if (userId == id && id != '') {
+                        if (userId == id && userPw == pw) {
                             alert('로그인!')
                             location.href = '/'
                             break
-                        } else {
-                            if (id == '') {
-                                break
-                            } else {
-                                alert('아이디와 비밀번호가 일치하지 않습니다!')
-                                break
-                            }
+                        } else if (userId == id && userPw != pw) {
+                            console.log('pwck')
+                            break
+                        } else if (userId != id && userPw == pw) {
+                            console.log('idck')
+                            break
+                        }
+
+
+
+
+
+
                         }
                     }
-                }
             });
         }
 
@@ -128,10 +133,10 @@
         //         if (loginPw == userPw && userPw != '') {
         //             console.log('비밀번호 일치')
         //             location.href='/'
-        //         } else {
+        //         } else {  (userId != id || userId == '')
         //             alert('비밀번호가 맞지 않습니다')
         //         }
-        //     } else {
+        //     } else { (userPw != pw || userPw =='')
         //         alert('아이디가 맞지 않습니다.')
         //     }
         // }
