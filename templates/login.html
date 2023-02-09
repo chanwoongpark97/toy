@@ -103,15 +103,19 @@
                         // console.log(userId,userPw)
                         if (userId == id && userPw == pw) {
                             alert('로그인!')
-                            location.href = '/'
+                            location.href = '/main'
                             break
-                        } else if (userId == id && (userPw != pw || userPw =='')) {
+                        } else if (userId == id && userPw != pw || userPw =='') {
                             alert('pwck')
                             break
-                        } else if (userPw == pw && (userId != id || userId=='')) {
+                        } else if (userPw == pw && userId != id || userId=='') {
                             alert('idck')
                             break
                         }
+                        // if (userId =='' || userPw =='') {
+                        //     alert('idpwcck')
+                        //     break
+                        // }
 
 
 
