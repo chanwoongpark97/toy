@@ -105,11 +105,11 @@
                             alert('로그인!')
                             location.href = '/'
                             break
-                        } else if (userId == id && userPw != pw) {
-                            console.log('pwck')
+                        } else if (userId == id && (userPw != pw || userPw =='')) {
+                            alert('pwck')
                             break
-                        } else if (userId != id && userPw == pw) {
-                            console.log('idck')
+                        } else if (userPw == pw && (userId != id || userId=='')) {
+                            alert('idck')
                             break
                         }
 
