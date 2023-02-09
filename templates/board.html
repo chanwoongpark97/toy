@@ -89,15 +89,21 @@
             let comment = $('#comment').val()
             let today = new Date().toISOString().substring(0, 10)
             let writerId = localStorage.getItem('account'); //loginchk()실행 후 setItem으로 저장한 값 불러올 예정
-            $.ajax({
-                type: "POST",
-                url: "/board",
-                data: {'writer_give': writerId, 'comment_give': comment, 'date_give': today},
-                success: function (response) {
-                    alert(response["msg"])
-                    window.location.reload()
-                }
-            });
+
+            if (writerId == '' || writerId == null) {
+                alert('로그인이 필요한 서비스 입니다.')
+                location.href = '/login'
+            } else {
+                $.ajax({
+                    type: "POST",
+                    url: "/board",
+                    data: {'writer_give': writerId, 'comment_give': comment, 'date_give': today},
+                    success: function (response) {
+                        alert(response["msg"])
+                        window.location.reload()
+                    }
+                });
+            }
         }
 
         function show() {
@@ -179,7 +185,7 @@
                 </thead>
                 <tbody class="table-group-divider" id="board">
                 <tr>
-                    <th scope="row"><input type="text" id="writer"></th>
+                    <th scope="row"><input type="text" id="writer" disabled ></th>
                     <td colspan="2"><input type="text" id="comment" placeholder="한줄 평 작성.."></td>
                     <td id="savebtn" onclick="save()" type="button">한줄평 남기기</td>
                 </tr>
