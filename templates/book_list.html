@@ -169,10 +169,7 @@ crossorigin="anonymous"></script>
                     let publisher = rows[i]['publisher']
                     let url = rows[i]['url']
 
-                    console.log(name.includes(search))
-
                     //       한 글자 마다 검색 가능
-                    name_word = name.split(' ')
                     if (name.includes(search)) {
                             let temp_html = `<div class="col">
                                             <div class="card h-100">
