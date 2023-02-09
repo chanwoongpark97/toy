@@ -58,6 +58,11 @@ def musical_get():
     musical_info = list(db.musical.find({}, {'_id': False}))
     return jsonify({'musicalInfo':musical_info})
 
+@app.route("/musicalsearch_list", methods=["GET"])
+def musicalsearch_list_get():
+    musical_list = list(db.musical.find({}, {'_id': False}))
+    return jsonify({'musicals': musical_list})
+
 @app.route('/login')
 def login():
     return render_template('login.html')

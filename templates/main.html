@@ -168,6 +168,7 @@
                 alert('로그아웃 되셨습니다.')
                 localStorage.clear()
                 location.href = '/main'
+                window.location.reload()
                  temp_html = `<button class="btn btn-outline-success" type="button" onclick="location.href = '/login'"
                                         value="login">login
                                 </button>

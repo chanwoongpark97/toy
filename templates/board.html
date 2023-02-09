@@ -93,6 +93,9 @@
             if (writerId == '' || writerId == null) {
                 alert('로그인이 필요한 서비스 입니다.')
                 location.href = '/login'
+            } else if (comment == ''){
+                alert('한줄평은 공백이 될 수 없습니다.')
+                window.location.reload()
             } else {
                 $.ajax({
                     type: "POST",
