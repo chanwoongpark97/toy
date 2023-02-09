@@ -94,7 +94,6 @@
                 data: {},
                 success: function (response) {
                     let rows = response['user_list']
-                    // localStorage.setItem('account', userId); 로컬스토리지에 데이터 저장
                     let id = $('#LOGIN_ID').val()
                     let pw = $('#LOGIN_PW').val()
                     for (let i = 0; i < rows.length; i++) {
@@ -103,6 +102,7 @@
                         // console.log(userId,userPw)
                         if (userId == id && userPw == pw) {
                             alert('로그인!')
+                            localStorage.setItem('account', userId);    //세팅 성공
                             location.href = '/main'
                             break
                         } else if (userId == id && userPw != pw || userPw =='') {

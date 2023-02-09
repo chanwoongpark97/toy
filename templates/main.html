@@ -132,13 +132,50 @@
         /*    color: blue;*/
         /*    text-decoration: underline;*/
         /*}*/
+        #login_btn {
+            display: none;
+        }
+        #logout_btn {
+            display: none;
+        }
+        #mypage_btn {
+            display: none;
+        }
     </style>
     <script>
         $(document).ready(function () {
             today_temp();
             today_dust();
+            login_Storage();
         });
+        function login_Storage() {
+            const name = localStorage.getItem
+            let temp_html = ''
+            if (name != '') {   //로그인이 안되어 있으면
 
+                temp_html = `<button class="btn btn-outline-success" type="button" onclick="location.href = '/login'"
+                                        value="login">login
+                                </button>
+                                <button class="btn btn-outline-success" onclick="goToProfile()">마이페이지</button>
+                                <button class="btn btn-outline-success" onclick="logout()">로그아웃</button>`
+            }
+            $('.login').append(temp_html);
+        }
+        function logout() {
+            const name = localStorage.getItem('account')
+            let temp_html = ''
+            if (name != '') {
+                alert('로그아웃 되셨습니다.')
+                localStorage.clear()
+                location.href = '/main'
+                 temp_html = `<button class="btn btn-outline-success" type="button" onclick="location.href = '/login'"
+                                        value="login">login
+                                </button>
+                                <button id="mypage_btn" class="btn btn-outline-success" onclick="goToProfile()">마이페이지</button>
+                                <button id="logout_btn" class="btn btn-outline-success" onclick="logout()">로그아웃</button>`
+            }
+            $('.login').append(temp_html);
+        }
         function today_temp() { //현재 온도
             $.ajax({
                 type: "GET",
@@ -217,9 +254,11 @@
                             <!--                        <button class="btn btn-outline-success" type="submit">Search</button>-->
                             <!--                    </form>-->
                             <div class="login">
-                                <button class="btn btn-outline-success" type="button" onclick="location.href = '/login'">
-                                    login
+                                <button id="login_btn" class="btn btn-outline-success" type="button" onclick="location.href = '/login'"
+                                        value="login">login
                                 </button>
+                                <button id="mypage_btn" class="btn btn-outline-success" onclick="goToProfile()">마이페이지</button>
+                                <button id="logout_btn" class="btn btn-outline-success" onclick="logout()">로그아웃</button>
                             </div>
                         </div>
                     </div>
@@ -292,7 +331,7 @@
                         <div class="card-img-top">😀</div>
 <!--                        <img src="..." class="card-img-top" alt="😀">-->
                         <div class="card-body">
-                            <p>현재기온: <span class="card-text">36</span>도</p>
+                            <p>현재기온: <span class="card-text"></span>도</p>
                         </div>
                     </div>
                 </div>

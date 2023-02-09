@@ -85,14 +85,14 @@
          });
 
         function save() {
-            let writer = $('#writer').val()
+            // let writer = $('#writer').val() //localStorage 를 이용해 로그인 한 아이디를 브라우저에 저장해놓은 상태.
             let comment = $('#comment').val()
             let today = new Date().toISOString().substring(0, 10)
-            // let writerId = localStorage.getItem('account'); loginchk()실행 후 setItem으로 저장한 값 불러올 예정
+            let writerId = localStorage.getItem('account'); //loginchk()실행 후 setItem으로 저장한 값 불러올 예정
             $.ajax({
                 type: "POST",
                 url: "/board",
-                data: {'writer_give': writer, 'comment_give': comment, 'date_give': today},
+                data: {'writer_give': writerId, 'comment_give': comment, 'date_give': today},
                 success: function (response) {
                     alert(response["msg"])
                     window.location.reload()
