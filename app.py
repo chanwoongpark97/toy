@@ -62,6 +62,12 @@ def musical_get():
 def login():
     return render_template('login.html')
 
+# 추가
+@app.route("/loginchk", methods=["GET"])
+def login_get():
+    user_list = list(db.member.find({}, {'_id': False}))
+    return jsonify({'user_list':user_list})
+
 @app.route('/join')
 def join():
     return render_template('join.html')
