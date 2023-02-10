@@ -134,34 +134,31 @@
                 }
             })
         }
-        function search(value) {
+        function search() {
         $('#cards-box').empty()
         let search = $('#search_name').val()
-
         $.ajax({
             type: 'GET',
             url: '/musicalsearch_list',
             data: {},
             success: function (response) {
                 let rows = response['musicals']
-                console.log(rows)
-
                 for (let i=0; i < rows.length; i++) {
                     let image = rows[i]['image']
                     let name = rows[i]['name'].toLowerCase()
                     let content = rows[i]['content']
 
                     // console.log(name.includes('<'),)
-                    name_word = name.split(' ')
+                    // name_word = name.split(' ')
                     // console.log(name_word)  //결과: 배열화
 
                     // const Result = name_word.filter((response) => {});
-                    let arrResult = [];
-                    for (let i = 0; i < rows.length; i++) {
-                        if (rows[i].name.includes(value)) {
-                            arrResult.push(rows[i])
-                        }
-                    }
+                    // let arrResult = [];
+                    // for (let i = 0; i < rows.length; i++) {
+                    //     if (rows[i].name.includes(value)) {
+                    //         arrResult.push(rows[i])
+                    //     }
+                    // }
                     // console.log(arrResult)
 
                     // arr = name_word.indexOf('<')
@@ -175,7 +172,8 @@
                     // arr2 = arr1.split('<')
                     // console.log(arr2)
 
-                    if (search == name_word) {
+                    if (name.includes(search)) {
+                        console.log(search)
                             let temp_html = `<div class="col">
                                                     <div class="card h-100">
                                                         <img src="${image}"
@@ -187,49 +185,49 @@
                                                     </div>
                                                 </div>`
                             $('#cards-box').append(temp_html)
-                            break
+                            // break
                         }
-                    for (let j=0; j<name.length; j++) {
-                            //      차례대로 앞글자부터 하나씩 검색
-                        name_str = name.slice(5, j) //야매로 만들어 놓음;;
-                        console.log(name_str)
-                        if (search == name_str) {
-                            let temp_html = `<div class="col">
-                                                    <div class="card h-100">
-                                                        <img src="${image}"
-                                                             class="card-img-top">
-                                                        <div class="card-body">
-                                                            <h5 class="card-title"> ${name} </h5>
-                                                            <p class="card-text"> album : ${content}</p>
-                                                        </div>
-                                                    </div>
-                                                </div>`
-                            $('#cards-box').append(temp_html)
-                            break
-                        }
-                    //            이름 전체 검색
-                    if (search == name) {
-                        let temp_html = `<div class="col">
-                                                    <div class="card h-100">
-                                                        <img src="${image}"
-                                                             class="card-img-top">
-                                                        <div class="card-body">
-                                                            <h5 class="card-title"> ${name} </h5>
-                                                            <p class="card-text"> album : ${content}</p>
-                                                        </div>
-                                                    </div>
-                                                </div>`
-                        $('#cards-box').append(temp_html)
-                        break
-                    }
-                    }
+                    // for (let j=0; j<name.length; j++) {
+                    //         //      차례대로 앞글자부터 하나씩 검색
+                    //     name_str = name.slice(5, j) //야매로 만들어 놓음;;
+                    //     console.log(name_str)
+                    //     if (search == name_str) {
+                    //         let temp_html = `<div class="col">
+                    //                                 <div class="card h-100">
+                    //                                     <img src="${image}"
+                    //                                          class="card-img-top">
+                    //                                     <div class="card-body">
+                    //                                         <h5 class="card-title"> ${name} </h5>
+                    //                                         <p class="card-text"> album : ${content}</p>
+                    //                                     </div>
+                    //                                 </div>
+                    //                             </div>`
+                    //         $('#cards-box').append(temp_html)
+                    //         break
+                    //     }
+                    // //            이름 전체 검색
+                    // if (search == name) {
+                    //     let temp_html = `<div class="col">
+                    //                                 <div class="card h-100">
+                    //                                     <img src="${image}"
+                    //                                          class="card-img-top">
+                    //                                     <div class="card-body">
+                    //                                         <h5 class="card-title"> ${name} </h5>
+                    //                                         <p class="card-text"> album : ${content}</p>
+                    //                                     </div>
+                    //                                 </div>
+                    //                             </div>`
+                    //     $('#cards-box').append(temp_html)
+                    //     break
+                    // }
+                    // }
                 }
                 if (search == '') {
                     alert('검색어를 입력하세요')
                 }
             }
         })
-            return arrResult;
+            // return arrResult;
     }
     // console.log(search($('#search_name').val()))
     </script>
